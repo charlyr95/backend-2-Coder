@@ -1,5 +1,5 @@
-import Cart from './models/carts.model.js';
-import Product from './models/products.model.js';
+import Cart from "./models/carts.model.js";
+import Product from "./models/products.model.js";
 
 class CartsDao {
   constructor(cart, product) {
@@ -34,7 +34,9 @@ class CartsDao {
 
   async updateCart(id, updatedFields) {
     try {
-      return await this.model.findByIdAndUpdate(id, updatedFields, { new: true });
+      return await this.model.findByIdAndUpdate(id, updatedFields, {
+        new: true,
+      });
     } catch (error) {
       throw error;
     }
@@ -43,13 +45,13 @@ class CartsDao {
   async addProductToCart(cartId, productId, quantity = 1) {
     try {
       const cart = await this.model.findById(cartId); // Buscamos el carrito
-      if (!cart) throw new Error('Carrito no encontrado');
+      if (!cart) throw new Error("Carrito no encontrado");
 
       const product = await this.model.product.findById(productId); // Verificamos que el producto exista
-      if (!product) throw new Error('Producto no encontrado');
+      if (!product) throw new Error("Producto no encontrado");
 
       const existingProduct = cart.products.find(
-        p => p.product.toString() === productId // Verificamos si el producto ya está en el carrito
+        (p) => p.product.toString() === productId // Verificamos si el producto ya está en el carrito
       );
 
       if (existingProduct) {
@@ -63,7 +65,7 @@ class CartsDao {
     } catch (error) {
       throw new Error(error.message);
     }
-  } 
+  }
 
   async deleteCart(id) {
     try {
@@ -73,7 +75,6 @@ class CartsDao {
     }
   }
 
-  // TODO: Eliminar esto ---------------------- NUEVO ----------------------
   async updateCartProducts(cartId, products) {
     try {
       const cart = await this.model.findById(cartId);
@@ -141,5 +142,5 @@ class CartsDao {
     }
   }
 }
- 
+
 export default new CartsDao(Cart, Product);

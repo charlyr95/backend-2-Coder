@@ -1,11 +1,11 @@
-import Product from './models/products.model.js';
+import Product from "./models/products.model.js";
 
 class ProductsDao {
   constructor(model) {
     this.model = model;
   }
 
-  async getProducts({ limit = 10, page = 1, sort, query} = {}) {
+  async getProducts({ limit = 10, page = 1, sort, query } = {}) {
     try {
       // expected filter: {"category":"calzado","price":{"$gte":45000}}
       if (query && typeof query === "string") {
@@ -16,7 +16,8 @@ class ProductsDao {
       const sortOption = sort ? { price: sort === "asc" ? 1 : -1 } : {};
       const skip = (page - 1) * limit;
 
-      const products = await this.model.find(filter)
+      const products = await this.model
+        .find(filter)
         .sort(sortOption)
         .skip(skip)
         .limit(limit);
@@ -27,7 +28,7 @@ class ProductsDao {
         total,
         totalPages: Math.ceil(total / limit),
         page,
-        limit
+        limit,
       };
     } catch (error) {
       throw error;
@@ -53,7 +54,7 @@ class ProductsDao {
 
   async addProducts(products) {
     try {
-      const newProducts = products.map(product => new this.model(product));
+      const newProducts = products.map((product) => new this.model(product));
       return await this.model.insertMany(newProducts);
     } catch (error) {
       throw error;
@@ -62,7 +63,9 @@ class ProductsDao {
 
   async updateProduct(id, updatedFields) {
     try {
-      return await this.model.findByIdAndUpdate(id, updatedFields, { new: true });
+      return await this.model.findByIdAndUpdate(id, updatedFields, {
+        new: true,
+      });
     } catch (error) {
       throw error;
     }

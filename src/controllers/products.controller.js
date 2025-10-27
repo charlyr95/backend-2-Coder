@@ -1,7 +1,6 @@
 import productsDao from "../dao/products.dao.js";
 
 export class ProductsController {
-  
   static dao = productsDao;
 
   static getProducts = async (req, res, next) => {
@@ -12,7 +11,7 @@ export class ProductsController {
         limit: parseInt(limit),
         page: parseInt(page),
         sort,
-        query
+        query,
       });
 
       const { products, total, totalPages } = result;
@@ -28,15 +27,19 @@ export class ProductsController {
         page: result.page,
         hasPrevPage,
         hasNextPage,
-        prevLink: hasPrevPage ? `/api/products?page=${result.page - 1}&limit=${limit}` : null,
-        nextLink: hasNextPage ? `/api/products?page=${result.page + 1}&limit=${limit}` : null
+        prevLink: hasPrevPage
+          ? `/api/products?page=${result.page - 1}&limit=${limit}`
+          : null,
+        nextLink: hasNextPage
+          ? `/api/products?page=${result.page + 1}&limit=${limit}`
+          : null,
       };
 
       res.status(200).json(response);
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   static getProductById = async (req, res, next) => {
     try {
@@ -45,7 +48,7 @@ export class ProductsController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   static addProduct = async (req, res, next) => {
     try {
@@ -54,16 +57,19 @@ export class ProductsController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   static updateProduct = async (req, res, next) => {
     try {
-      const updatedProduct = await this.dao.updateProduct(req.params.pid, req.body);
+      const updatedProduct = await this.dao.updateProduct(
+        req.params.pid,
+        req.body
+      );
       res.status(200).json(updatedProduct);
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   static deleteProduct = async (req, res, next) => {
     try {
@@ -72,7 +78,5 @@ export class ProductsController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 }
-
-
