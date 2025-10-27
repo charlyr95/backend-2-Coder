@@ -1,25 +1,25 @@
+// npm
 import path from "path";
 import express from "express";
-import connectDB from "./config/db.js";
-import config from "./config/config.js";
 
 // imports local modules
+import config from "./config/config.js";
+import connectDB from "./config/db.js";
 import errorHandler from "./middlewares/errorHandler.js";
-import productRoutes from "./routes/products.routes.js";
-import cartRoutes from "./routes/carts.routes.js";
+import routes from "./routes/_index.js";
 
+// server setup
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/products", productRoutes);
-app.use("/api/carts", cartRoutes);
+// routes
+app.use("/api", routes);
 
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
-
+// error handler middleware
 app.use(errorHandler);
+
+// mongoDB
 connectDB();
 
 app.listen(config.PORT, () => {
