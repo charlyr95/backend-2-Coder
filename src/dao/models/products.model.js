@@ -1,50 +1,50 @@
 import { Schema, model } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 
-const productsCollection = 'products';
+const productsCollection = "products";
 
 const productSchema = new Schema({
-  title: { 
+  title: {
     type: String,
     trim: true,
-    minlength: [3, 'Title must be at least 3 characters long'],
-    maxlength: [40, 'Title must be at most 40 characters long'],
-    required: true 
+    minlength: [3, "Título debe tener al menos 3 caracteres"],
+    maxlength: [40, "Título debe tener como máximo 40 caracteres"],
+    required: true,
   },
-  description: { 
-    type: String, 
+  description: {
+    type: String,
     trim: true,
-    minlength: [10, 'Description must be at least 10 characters long'],
-    maxlength: [240, 'Description must be at most 240 characters long'],
-    required: true 
+    minlength: [10, "Descripción debe tener al menos 10 caracteres"],
+    maxlength: [240, "Descripción debe tener como máximo 240 caracteres"],
+    required: true,
   },
-  code: { 
-    type: String, 
-    required: true, 
-    unique: true 
+  code: {
+    type: String,
+    required: true,
+    unique: true,
   },
-  price: { 
+  price: {
     type: Number,
-    min: [0, 'Price must be positive'],
-    max: [999999.99, 'Exceeded maximum price'],
-    required: true 
+    min: [0, "El precio debe ser positivo"],
+    max: [999999.99, "Se excedió el precio máximo permitido"],
+    required: true,
   },
-  status: { 
-    type: Boolean, 
-    default: true 
+  status: {
+    type: Boolean,
+    default: true,
   },
-  stock: { 
+  stock: {
     type: Number,
-    min: [0, 'Stock must be positive'],
-    default: 0
+    min: [0, "El stock debe ser positivo"],
+    default: 0,
   },
-  category: { 
-    type: String, 
-    default: "no category" 
+  category: {
+    type: String,
+    default: "uncategorized",
   },
-  thumbnails: { 
-    type: [String], 
-    default: [] 
+  thumbnails: {
+    type: [String],
+    default: [],
   },
 });
 
