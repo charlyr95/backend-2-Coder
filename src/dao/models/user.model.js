@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userCollection = "user";
 const userSchema = new Schema(
@@ -19,14 +20,6 @@ const userSchema = new Schema(
       maxlength: [30, "El apellido no puede tener más de 30 caracteres"],
     },
 
-    password: {
-      type: String,
-      required: true,
-      select: false,
-      minlength: [8, "La contraseña debe tener al menos 8 caracteres"],
-      maxlength: [64, "La contraseña no puede tener más de 64 caracteres"],
-    },
-
     email: {
       type: String,
       required: true,
@@ -39,6 +32,12 @@ const userSchema = new Schema(
     age: {
       type: Number,
       min: [0, "La edad debe ser un número positivo"],
+    },
+
+    password: {
+      type: String,
+      required: true,
+      select: false,
     },
 
     role: {
@@ -58,6 +57,14 @@ const userSchema = new Schema(
 
 userSchema.pre("findOne", function () {
   this.populate("cart");
+});
+
+// encriptar antes de guardar con el método hashSync
+userSchema.pre("save", function (next) {
+  if (!this.isModified("password")) return next();
+  const salt = bcrypt.genSaltSync(10);
+  this.password = bcrypt.hashSync(this.password, salt);
+  next();
 });
 
 export const userModel = model(userCollection, userSchema);
