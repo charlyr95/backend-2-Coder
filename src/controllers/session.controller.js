@@ -1,3 +1,5 @@
+// TODO: Crear DAO de usuarios e integrarlo en el controlador
+
 export class SessionController {
   static users = [];
 
@@ -21,11 +23,9 @@ export class SessionController {
 
       // Genera token (simulado)
       const accessToken = "token-simulado";
-      const refreshToken = "refresh-token-simulado";
 
       // Token expires 2 hours
       res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 2 * 60 * 60 * 1000 });
-      res.cookie("refreshToken", refreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
       await res
         .status(200)
         .send({ message: "Usuario logueado exitosamente", accessToken });

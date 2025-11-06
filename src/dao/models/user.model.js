@@ -59,12 +59,4 @@ userSchema.pre("findOne", function () {
   this.populate("cart");
 });
 
-// encriptar antes de guardar con el método hashSync
-userSchema.pre("save", function (next) {
-  if (!this.isModified("password")) return next();
-  const salt = bcrypt.genSaltSync(10);
-  this.password = bcrypt.hashSync(this.password, salt);
-  next();
-});
-
 export const userModel = model(userCollection, userSchema);
