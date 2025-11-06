@@ -6,28 +6,52 @@ class UserDao {
     }
 
     async createUser(userData) {
-        const user = new this.model(userData);
-        return await user.save();
+        try {
+            const user = new this.model(userData);
+            return await user.save();
+        } catch (error) {
+            throw error;
+        }
     }
 
     async getUserById(userId) {
-        return await this.model.findById(userId);
+        try {
+            return await this.model.findById(userId);
+        } catch (error) {
+            throw error;
+        }
     }
 
     async getUserByEmail(email) {
-        return await this.model.findOne({ email });
+        try {
+            return await this.model.findOne({ email });
+        } catch (error) {
+            throw error;
+        }
     }
 
     async updateUser(userId, userData) {
-        return await this.model.findByIdAndUpdate(userId, userData, { new: true });
+        try {
+            return await this.model.findByIdAndUpdate(userId, userData, { new: true });
+        } catch (error) {
+            throw error;
+        }
     }
 
     async deleteUser(userId) {
-        return await this.model.findByIdAndDelete(userId);
+        try {
+            return await this.model.findByIdAndDelete(userId);
+        } catch (error) {
+            throw error;
+        }
     }
 
     async getAllUsers() {
-        return await this.model.find();
+        try {
+            return await this.model.find();
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
