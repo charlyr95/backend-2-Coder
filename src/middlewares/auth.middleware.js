@@ -1,3 +1,5 @@
+import { verifyToken } from "../utils/jwt.js";
+
 const auth = (req, res, next) => {
   const { accessToken } = req.cookies;
   
@@ -6,9 +8,8 @@ const auth = (req, res, next) => {
     res.setHeader("Content-Type", "application/json");
     return res.status(401).send({ error: "No autorizado" });
   }
-
   // Verifica el token (simulado)
-  if (accessToken !== "token-simulado") {
+  if (!verifyToken(accessToken)) {
     res.setHeader("Content-Type", "application/json");
     return res.status(403).send({ error: "Token inválido" });
   }

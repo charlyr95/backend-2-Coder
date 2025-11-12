@@ -1,88 +1,46 @@
-import UserDao from "../dao/user.dao.js";
-import { createHash, isValidPassword } from "../utils/hashPassword.js";
 import { generateToken } from "../utils/jwt.js";
  
 export class SessionController {
-  static dao = UserDao;
 
   static login = async (req, res, next) => {
     try {
-      // Valida body
-      if (!req.body) return res.status(400).send("Faltan credenciales");
-
-      // Valida campos
-      const { email, password } = req.body;
-      if (!email || !password)
-        return res.status(400).send("Faltan credenciales");
-
-      // Valida usuario
-      const user = await UserDao.getUserByEmail(email, true);
-      if (!user) return res.status(401).send("Credenciales inválidas");
-      
-      // Valida contraseña
-      if (!isValidPassword(user.password, password))
-        return res.status(401).send("Credenciales inválidas");
-
-      // Genera token
+      if (!req.user) return res.status(401).send({message: "Credenciales inválidas"});
+      const user = req.user;
       const accessToken = generateToken(user);
-
-      // Token expires 1 hours
       res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 1 * 60 * 60 * 1000 });
-      await res
-        .status(200)
-        .send({ message: "Usuario logueado exitosamente", accessToken });
+      res.status(200).send({ message: "Usuario logueado exitosamente" });
     } catch (error) {
-      next(error);
+      res.status(500).send({message: "Error en el login de usuario", error});
     }
   };
 
   static register = async (req, res, next) => {
     try {
-      // Valida body
-      if (!req.body) return res.status(400).send("Faltan credenciales");
-      const { email, password, first_name, last_name, age, role, cart} = req.body;
-
-      // Campos obligatorios
-      if (!email || !password)
-        return res.status(400).send("Faltan credenciales");
-
-      // Verifica si el usuario ya existe
-      const existingUser = await UserDao.getUserByEmail(email);
-      if (existingUser) return res.status(409).send("El usuario ya existe");
-
-      // Registra el usuario
-      const user = { email, password: createHash(password), first_name, last_name, age, role, cart };
-      const newUser = await UserDao.createUser(user);
-      await res.status(201).send("Usuario registrado exitosamente");
+      // Registro manejado por Passport
+      if (!req.user) return res.status(500).send({message: "Error en el registro de usuario"});
+      res.status(201).send({message: "Usuario registrado exitosamente"});
     } catch (error) {
-      next(error);
-    }
-  };
-
-  static logout = async (req, res, next) => {
-    try {
-      // Desloguea al usuario (simulado)
-      await res.send("Usuario deslogueado exitosamente");
-    } catch (error) {
-      next(error);
+      res.status(500).send({message: "Error en el registro de usuario", error});
     }
   };
 
   static current = async (req, res, next) => {
     try {
       // Devuelve información del usuario de la sesión
-      await res.send("Información del usuario de la sesión (simulado)");
+      const user = req.user;
+      if (!user) return res.status(404).send({message: "Usuario no encontrado"});
+      res.status(200).send(user);
     } catch (error) {
-      next(error);
+      res.status(500).send({message: "Error al obtener usuario", error});
     }
   };
 
-  static protected = async (req, res, next) => {
-    try {
-      // Ruta protegida
-      await res.send("Acceso a ruta protegida exitoso (simulado)");
-    } catch (error) {
-      next(error);
-    }
-  };
+  // static protected = async (req, res, next) => {
+  //   try {
+  //     // Ruta protegida
+  //     res.send({message: "Acceso a ruta protegida exitoso (simulado)"});
+  //   } catch (error) {
+  //     res.status(500).send({message: "Error en ruta protegida", error});
+  //   }
+  // };
 }
