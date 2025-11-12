@@ -16,3 +16,7 @@ export const verifyToken = (token) => {
     return null;
   }
 };
+
+export const decodeToken = (token) => {
+  return jwt.decode(token);
+};
