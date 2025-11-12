@@ -24,7 +24,9 @@ class UserDao {
 
     async getUserByEmail(email) {
         try {
-            return await this.model.findOne({ email });
+            // return full user and password (that has select false in schema)
+            const user = await this.model.findOne({ email: email }).select("+password");
+            return user;
         } catch (error) {
             throw error;
         }

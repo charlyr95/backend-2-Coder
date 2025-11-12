@@ -48,15 +48,11 @@ const userSchema = new Schema(
 
     cart: {
       type: Schema.Types.ObjectId,
-      ref: "cart",
+      ref: "carts",
       default: null,
     },
   },
   { timestamps: true }
 );
 
-userSchema.pre("findOne", function () {
-  this.populate("cart");
-});
-
-export const userModel = model(userCollection, userSchema);
+export default model(userCollection, userSchema);

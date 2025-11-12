@@ -1,6 +1,9 @@
-
+import UserDao from "../dao/user.dao.js";
+import { createHash, isValidPassword } from "../utils/hashPassword.js";
+import { generateToken } from "../utils/jwt.js";
+ 
 export class SessionController {
-  static users = [];
+  static dao = UserDao;
 
   static login = async (req, res, next) => {
     try {
@@ -13,18 +16,18 @@ export class SessionController {
         return res.status(400).send("Faltan credenciales");
 
       // Valida usuario
-      const user = this.users.find((u) => u.email === email);
+      const user = await UserDao.getUserByEmail(email, true);
       if (!user) return res.status(401).send("Credenciales inválidas");
-
+      
       // Valida contraseña
-      if (user.password !== password)
+      if (!isValidPassword(user.password, password))
         return res.status(401).send("Credenciales inválidas");
 
-      // Genera token (simulado)
-      const accessToken = "token-simulado";
+      // Genera token
+      const accessToken = generateToken(user);
 
-      // Token expires 2 hours
-      res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 2 * 60 * 60 * 1000 });
+      // Token expires 1 hours
+      res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 1 * 60 * 60 * 1000 });
       await res
         .status(200)
         .send({ message: "Usuario logueado exitosamente", accessToken });
@@ -37,18 +40,19 @@ export class SessionController {
     try {
       // Valida body
       if (!req.body) return res.status(400).send("Faltan credenciales");
-      const { email, password } = req.body;
+      const { email, password, first_name, last_name, age, role, cart} = req.body;
 
-      // Valida campos
+      // Campos obligatorios
       if (!email || !password)
         return res.status(400).send("Faltan credenciales");
 
       // Verifica si el usuario ya existe
-      const existingUser = this.users.find((u) => u.email === email);
+      const existingUser = await UserDao.getUserByEmail(email);
       if (existingUser) return res.status(409).send("El usuario ya existe");
 
       // Registra el usuario
-      this.users.push({ email, password });
+      const user = { email, password: createHash(password), first_name, last_name, age, role, cart };
+      const newUser = await UserDao.createUser(user);
       await res.status(201).send("Usuario registrado exitosamente");
     } catch (error) {
       next(error);
