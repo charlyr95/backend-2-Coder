@@ -93,7 +93,7 @@ export const InitializePassport = () => {
         try {
           const user = await UserDao.getUserById(jwtPayload.id);
           if (!user)
-            return done(null, false, { message: "Usuario no encontrado" });
+            return done(null, false, { message: "Credenciales inválidas" });
           done(null, user);
         } catch (error) {
           return done(error, false);
