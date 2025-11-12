@@ -6,9 +6,10 @@ export class SessionController {
     try {
       if (!req.user) return res.status(401).send({message: "Credenciales inválidas"});
       const user = req.user;
+      delete user.password;
       const accessToken = generateToken(user);
       res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 1 * 60 * 60 * 1000 });
-      res.status(200).send({ message: "Usuario logueado exitosamente" });
+      res.status(200).send({ message: "Usuario logueado exitosamente", user });
     } catch (error) {
       res.status(500).send({message: "Error en el login de usuario", error});
     }
