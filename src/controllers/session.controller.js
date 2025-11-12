@@ -1,4 +1,3 @@
-// TODO: Crear DAO de usuarios e integrarlo en el controlador
 
 export class SessionController {
   static users = [];
