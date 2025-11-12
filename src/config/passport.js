@@ -49,7 +49,7 @@ export const InitializePassport = () => {
             role,
             cart,
           });
-          return done(null, user);
+          return done(null, user.toJSON());
         } catch (error) {
           return done(error);
         }
@@ -73,7 +73,7 @@ export const InitializePassport = () => {
           const isMatch = isValidPassword(user.password, password);
           if (!isMatch)
             return done(null, false, { message: "Credenciales inválidas" });
-          done(null, user);
+          done(null, user.toJSON());
         } catch (error) {
           return done(error);
         }
@@ -94,7 +94,7 @@ export const InitializePassport = () => {
           const user = await UserDao.getUserById(jwtPayload.id);
           if (!user)
             return done(null, false, { message: "Credenciales inválidas" });
-          done(null, user);
+          done(null, user.toJSON());
         } catch (error) {
           return done(error, false);
         }
