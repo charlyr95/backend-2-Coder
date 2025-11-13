@@ -2,11 +2,16 @@ import passport from "passport";
 
 export const passportCall = (strategy) => (req, res, next) => {
   passport.authenticate(strategy, { session: false }, (err, user, info) => {
-    if (err) return next(err);
+    if (err)
+      return res.status(500).json({
+        status: "error",
+        message: "Error de autenticación",
+      });
+
     if (!user)
       return res.status(401).json({
         status: "error",
-        message: info?.message || "No autorizado",
+        message: "No autorizado",
       });
     req.user = user;
     next();
