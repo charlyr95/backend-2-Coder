@@ -8,38 +8,20 @@ class CartsDao {
   }
 
   async getCarts() {
-    try {
-      return await this.model.find().populate("products.product");
-    } catch (error) {
-      throw error;
-    }
+    return await this.model.find().populate("products.product");
   }
 
   async getCartById(id) {
-    try {
-      return await this.model.findById(id).populate("products.product");
-    } catch (error) {
-      throw error;
-    }
+    return await this.model.findById(id).populate("products.product");
   }
 
   async addCart() {
-    try {
-      const newCart = new this.model();
-      return await newCart.save();
-    } catch (error) {
-      throw error;
-    }
+    const newCart = new this.model();
+    return await newCart.save();
   }
 
   async updateCart(id, updatedFields) {
-    try {
-      return await this.model.findByIdAndUpdate(id, updatedFields, {
-        new: true,
-      });
-    } catch (error) {
-      throw error;
-    }
+    return await this.model.findByIdAndUpdate(id, updatedFields, { new: true });
   }
 
   async addProductToCart(cartId, productId, quantity = 1) {
@@ -68,11 +50,7 @@ class CartsDao {
   }
 
   async deleteCart(id) {
-    try {
-      return await this.model.findByIdAndDelete(id);
-    } catch (error) {
-      throw error;
-    }
+    return await this.model.findByIdAndDelete(id);
   }
 
   async updateCartProducts(cartId, products) {

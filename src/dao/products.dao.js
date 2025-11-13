@@ -36,47 +36,25 @@ class ProductsDao {
   }
 
   async getProductById(id) {
-    try {
-      return await this.model.findById(id);
-    } catch (error) {
-      throw error;
-    }
+    return await this.model.findById(id);
   }
 
   async addProduct(product) {
-    try {
-      const newProduct = new this.model(product);
-      return await newProduct.save();
-    } catch (error) {
-      throw error;
-    }
+    const newProduct = new this.model(product);
+    return await newProduct.save();
   }
 
   async addProducts(products) {
-    try {
-      const newProducts = products.map((product) => new this.model(product));
-      return await this.model.insertMany(newProducts);
-    } catch (error) {
-      throw error;
-    }
+    const newProducts = products.map((product) => new this.model(product));
+    return await this.model.insertMany(newProducts);
   }
 
   async updateProduct(id, updatedFields) {
-    try {
-      return await this.model.findByIdAndUpdate(id, updatedFields, {
-        new: true,
-      });
-    } catch (error) {
-      throw error;
-    }
+    return await this.model.findByIdAndUpdate(id, updatedFields, { new: true });
   }
 
   async deleteProduct(id) {
-    try {
-      return await this.model.findByIdAndDelete(id);
-    } catch (error) {
-      throw error;
-    }
+    return await this.model.findByIdAndDelete(id);
   }
 }
 
