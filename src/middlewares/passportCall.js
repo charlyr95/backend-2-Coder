@@ -5,7 +5,7 @@ export const passportCall = (strategy) => (req, res, next) => {
     if (err)
       return res.status(500).json({
         status: "error",
-        message: "Error de autenticación",
+        message: err.message || "Error interno del servidor",
       });
 
     if (!user)
