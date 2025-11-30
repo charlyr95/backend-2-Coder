@@ -1,82 +1,19 @@
-import productsDao from "../dao/products.dao.js";
+import ProductsService from "../service/products.service.js";
 
-export class ProductsController {
-  static dao = productsDao;
+class ProductsController {
 
-  static getProducts = async (req, res, next) => {
+  constructor () {
+    this.service = ProductsService;
+  }
+
+ getProducts = async (req, res) => {
     try {
-      const { limit = 10, page = 1, sort, query = {} } = req.query;
-
-      const result = await this.dao.getProducts({
-        limit: parseInt(limit),
-        page: parseInt(page),
-        sort,
-        query,
-      });
-
-      const { products, total, totalPages } = result;
-      const hasPrevPage = result.page > 1;
-      const hasNextPage = result.page < totalPages;
-
-      const response = {
-        status: "success",
-        payload: products,
-        totalPages,
-        prevPage: hasPrevPage ? result.page - 1 : null,
-        nextPage: hasNextPage ? result.page + 1 : null,
-        page: result.page,
-        hasPrevPage,
-        hasNextPage,
-        prevLink: hasPrevPage
-          ? `/api/products?page=${result.page - 1}&limit=${limit}`
-          : null,
-        nextLink: hasNextPage
-          ? `/api/products?page=${result.page + 1}&limit=${limit}`
-          : null,
-      };
-
-      res.status(200).json(response);
-    } catch (error) {
-      next(error);
+      const result = await this.service.getProducts(req.query);
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
     }
-  };
-
-  static getProductById = async (req, res, next) => {
-    try {
-      const product = await this.dao.getProductById(req.params.pid);
-      res.status(200).json(product);
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  static addProduct = async (req, res, next) => {
-    try {
-      const newProduct = await this.dao.addProduct(req.body);
-      res.status(201).json(newProduct);
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  static updateProduct = async (req, res, next) => {
-    try {
-      const updatedProduct = await this.dao.updateProduct(
-        req.params.pid,
-        req.body
-      );
-      res.status(200).json(updatedProduct);
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  static deleteProduct = async (req, res, next) => {
-    try {
-      await this.dao.deleteProduct(req.params.pid);
-      res.status(204).send("Product deleted");
-    } catch (error) {
-      next(error);
-    }
-  };
+  }
 }
+
+export default new ProductsController();

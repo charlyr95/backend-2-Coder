@@ -1,61 +1,35 @@
-import Product from "./models/products.model.js";
+import ProductModel from "./models/products.model.js";
 
 class ProductsDao {
-  constructor(model) {
-    this.model = model;
-  }
-
-  async getProducts({ limit = 10, page = 1, sort, query } = {}) {
-    try {
-      // expected filter: {"category":"calzado","price":{"$gte":45000}}
-      if (query && typeof query === "string") {
-        query = JSON.parse(query);
-      }
-      const filter = query ? { ...query } : {};
-
-      const sortOption = sort ? { price: sort === "asc" ? 1 : -1 } : {};
-      const skip = (page - 1) * limit;
-
-      const products = await this.model
-        .find(filter)
-        .sort(sortOption)
-        .skip(skip)
-        .limit(limit);
-      const total = await this.model.countDocuments(filter);
-
-      return {
-        products,
-        total,
-        totalPages: Math.ceil(total / limit),
-        page,
-        limit,
-      };
-    } catch (error) {
-      throw error;
+    constructor() {
+      this.model = ProductModel;
     }
-  }
 
-  async getProductById(id) {
-    return await this.model.findById(id);
-  }
+    async get(options){
+      return await this.model.paginate({}, options);
+    }
 
-  async addProduct(product) {
-    const newProduct = new this.model(product);
-    return await newProduct.save();
-  }
+    async getBy(filter){
+      return await this.model.findOne(filter);
+    }
 
-  async addProducts(products) {
-    const newProducts = products.map((product) => new this.model(product));
-    return await this.model.insertMany(newProducts);
-  }
+    async create(product) {
+      const newProduct = new this.model(product);
+      return await newProduct.save();
+    }
 
-  async updateProduct(id, updatedFields) {
-    return await this.model.findByIdAndUpdate(id, updatedFields, { new: true });
-  }
+    async createMany(products) {
+      const newProducts = products.map((product) => new this.model(product));
+      return await this.model.insertMany(newProducts);
+    }
 
-  async deleteProduct(id) {
-    return await this.model.findByIdAndDelete(id);
-  }
+    async update(id, updatedFields) {
+      return await this.model.findByIdAndUpdate(id, updatedFields, { new: true });
+    }
+
+    async delete(id) {
+      return await this.model.findByIdAndDelete(id);
+    }
 }
 
-export default new ProductsDao(Product);
+export default new ProductsDao();

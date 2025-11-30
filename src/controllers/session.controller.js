@@ -26,7 +26,6 @@ export class SessionController {
 
   static current = async (req, res, next) => {
     try {
-      // Devuelve información del usuario de la sesión
       const user = req.user;
       if (!user) return res.status(404).send({ message: "Usuario no encontrado" });
       res.status(200).send(user);
@@ -35,12 +34,4 @@ export class SessionController {
     }
   };
 
-  // static protected = async (req, res, next) => {
-  //   try {
-  //     // Ruta protegida
-  //     res.send({message: "Acceso a ruta protegida exitoso (simulado)"});
-  //   } catch (error) {
-  //     res.status(500).send({message: "Error en ruta protegida", error});
-  //   }
-  // };
 }
