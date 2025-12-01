@@ -1,12 +1,13 @@
 import ProductsRepository from "../repository/products.repository.js";
-
+import DTO from "../dto/productsPagination.dto.js";
 class ProductsService {
     constructor() {
         this.repository = ProductsRepository;
     }
 
     async getProducts({ limit = 10, page = 1, sort = null, query = null } = {}) {
-        return await this.repository.getProducts({ limit, page, sort, query });
+        const products = await this.repository.getProducts(query ? JSON.parse(query) : {}, { limit, page, sort: sort ? JSON.parse(sort) : {} });
+        return new DTO(products);
     }
 
     async getProductById(id) {
@@ -22,11 +23,11 @@ class ProductsService {
     }
 
     async updateProduct(id, updatedFields) {
-        return await model.findByIdAndUpdate(id, updatedFields, { new: true });
+        return await this.repository.updateProduct(id, updatedFields);
     }
 
     async deleteProduct(id) {
-        return await model.findByIdAndDelete(id);
+        return await this.repository.deleteProduct(id);
     }
 }
 
