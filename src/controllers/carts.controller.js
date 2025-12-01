@@ -1,60 +1,62 @@
-import CartDao from "../dao/carts.dao.js";
+import CartsService from "../service/carts.service.js";
 
-export class CartsController {
-  static dao = CartDao;
+class CartsController {
+  constructor() {
+    this.service = CartsService;
+  }
 
-  static getCarts = async (req, res, next) => {
+  getCarts = async (req, res) => {
     try {
-      const carts = await this.dao.getCarts();
-      res.status(200).json(carts);
-    } catch (error) {
-      next(error);
+      const result = await this.service.getCarts(req.query);
+      if (!result) return res.status(404).send({ error: "No se encontraron carritos" });
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
     }
   };
 
-  static getCartById = async (req, res, next) => {
+  getCartById = async (req, res) => {
     try {
-      const cart = await this.dao.getCartById(req.params.cid);
-      if (!cart)
-        return res.status(404).send({ error: "Carrito no encontrado" });
-      res.send(cart);
-    } catch (error) {
-      next(error);
+      const result = await this.service.getCartById(req.params.id);
+      if (!result) return res.status(404).send({ error: "Carrito no encontrado" });
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
     }
   };
 
-  static addCart = async (req, res, next) => {
+
+  addCart = async (req, res) => {
     try {
-      const carts = await this.dao.addCart();
-      res.status(201).json(carts);
-    } catch (error) {
-      next(error);
+      const result = await this.service.addCart(req.body);
+      res.status(201).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
     }
   };
 
-  static addProduct = async (req, res, next) => {
+  addProduct = async (req, res) => {
     try {
       const { cid, pid } = req.params;
-      await this.dao.addProductToCart(cid, pid);
-      res
-        .status(200)
-        .json({ message: `Producto ${pid} agregado al carrito ${cid}` });
-    } catch (error) {
-      next(error);
+      const result = await this.service.addProduct(cid, pid, req.body);
+      res.status(200).json({ message: `Producto ${pid} agregado al carrito ${cid}`, cart: result });
+    } catch (err) {
+      res.status(400).json({ error: err.message });
     }
   };
-
-  static deleteCart = async (req, res, next) => {
+  
+  deleteCart = async (req, res) => {
     try {
       const { cid } = req.params;
-      await this.dao.deleteCart(cid);
+      await this.service.deleteCart(cid);
       res.status(200).json({ message: `Carrito ${cid} eliminado` });
-    } catch (error) {
-      next(error);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
     }
   };
+  
 
-  static updateCartProducts = async (req, res, next) => {
+  updateCartProducts = async (req, res) => {
     try {
       const { cid } = req.params;
       const { products } = req.body;
@@ -63,86 +65,40 @@ export class CartsController {
         .status(200)
         .json({ message: `Carrito ${cid} productos actualizados` });
     } catch (error) {
-      next(error);
+      res.status(400).json({ error: error.message });
     }
   };
 
-  static updateProductQuantity = async (req, res, next) => {
+  updateProductQuantity = async (req, res) => {
     try {
       const { cid, pid } = req.params;
       const { quantity } = req.body;
       await this.dao.updateProductQuantity(cid, pid, quantity);
-      res
-        .status(200)
-        .json({
-          message: `Producto ${pid} cantidad actualizada en carrito ${cid}`,
-        });
+      res.status(200).json({ message: `Producto ${pid} cantidad actualizada en carrito ${cid}`, });
     } catch (error) {
-      next(error);
+      res.status(400).json({ error: error.message });
     }
   };
 
-  static deleteProduct = async (req, res, next) => {
+  deleteProduct = async (req, res) => {
     try {
       const { cid, pid } = req.params;
       await this.dao.deleteProduct(cid, pid);
-      res
-        .status(200)
-        .json({ message: `Producto ${pid} eliminado del carrito ${cid}` });
+      res.status(200).json({ message: `Producto ${pid} eliminado del carrito ${cid}` });
     } catch (error) {
-      next(error);
+      res.status(400).json({ error: error.message });
     }
   };
 
-  static clearCart = async (req, res, next) => {
+  clearCart = async (req, res) => {
     try {
       const { cid } = req.params;
       await this.dao.clearCart(cid);
       res.status(200).json({ message: `Carrito ${cid} vaciado` });
     } catch (error) {
-      next(error);
+      res.status(400).json({ error: error.message });
     }
   };
 }
 
-// import CartDao from "../daos/carts.dao.js";
-
-// export class CartsController {
-
-//   static getCarts = async (req, res, next) => {
-//     res.status(200).json({ dbg: 'getCarts method called' });
-//   }
-
-//   static getCartById = async (req, res, next) => {
-//     res.status(200).json({ dbg: 'getCartById method called' });
-//   }
-
-//   static addCart = async (req, res, next) => {
-//     res.status(200).json({ dbg: 'addCart method called' });
-//   }
-
-//   static addProduct = async (req, res, next) => {
-//     res.status(200).json({ dbg: 'addProduct method called' });
-
-//   }
-
-//   static deleteCart = async (req, res, next) => {
-//     res.status(200).json({ dbg: 'deleteCart method called' });
-//   }
-
-//   static updateCartProducts = async (req, res, next) => {
-//     res.status(200).json({ dbg: 'updateCartProducts method called' });
-//   }
-
-//   static updateProductQuantity = async (req, res, next) => {
-//     res.status(200).json({ dbg: 'updateProductQuantity method called' });
-//   }
-
-//   static deleteProduct = async (req, res, next) => {
-//     res.status(200).json({ dbg: 'deleteProduct method called' });
-//   }
-
-//   static clearCart = async (req, res, next) => {
-//     res.status(200).json({ dbg: 'clearCart method called' });
-//   }
-// }
+export default new CartsController();
