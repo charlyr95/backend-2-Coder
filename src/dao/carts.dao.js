@@ -18,7 +18,7 @@ class CartsDao {
   }
 
   async update(id, updatedFields) {
-    return await this.model.findByIdAndUpdate(id, updatedFields, { new: true });
+    return await this.model.findByIdAndUpdate(id, updatedFields, { runValidators: true, new: true });
   }
 
   async delete(id) {

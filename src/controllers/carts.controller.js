@@ -5,7 +5,6 @@ class CartsController {
     this.service = CartsService;
   }
 
-  
   getCarts = async (req, res) => {
     try {
       const result = await this.service.getCarts();
@@ -18,13 +17,11 @@ class CartsController {
   getCartById = async (req, res) => {
     try {
       const result = await this.service.getCartById(req.params.cid);
-      if (!result) return res.status(404).send({ error: "Carrito no encontrado" });
       res.status(200).json(result);
     } catch (err) {
       res.status(400).json({ error: err.message });
     }
   };
-
 
   addCart = async (req, res) => {
     try {
@@ -37,9 +34,8 @@ class CartsController {
 
   addProduct = async (req, res) => {
     try {
-      const { cid, pid } = req.params;
-      const result = await this.service.addProduct(cid, pid, req.body);
-      res.status(200).json({ message: `Producto ${pid} agregado al carrito ${cid}`, cart: result });
+      const result = await this.service.addProduct(req.params.cid, req.params.pid, req.body);
+      res.status(200).json({ message: `Producto ${req.params.pid} agregado al carrito ${req.params.cid}`, cart: result });
     } catch (err) {
       res.status(400).json({ error: err.message });
     }
@@ -47,23 +43,17 @@ class CartsController {
   
   deleteCart = async (req, res) => {
     try {
-      const { cid } = req.params;
-      await this.service.deleteCart(cid);
-      res.status(200).json({ message: `Carrito ${cid} eliminado` });
+      await this.service.deleteCart(req.params.cid);
+      res.status(200).json({ message: `Carrito ${req.params.cid} eliminado` });
     } catch (err) {
       res.status(400).json({ error: err.message });
     }
   };
   
-
   updateCartProducts = async (req, res) => {
     try {
-      const { cid } = req.params;
-      const { products } = req.body;
-      await this.dao.updateCartProducts(cid, products);
-      res
-        .status(200)
-        .json({ message: `Carrito ${cid} productos actualizados` });
+      await this.service.updateCartProducts(req.params.cid, req.body.products);
+      res.status(200).json({ message: `Carrito ${req.params.cid} productos actualizados` });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
@@ -71,10 +61,8 @@ class CartsController {
 
   updateProductQuantity = async (req, res) => {
     try {
-      const { cid, pid } = req.params;
-      const { quantity } = req.body;
-      await this.dao.updateProductQuantity(cid, pid, quantity);
-      res.status(200).json({ message: `Producto ${pid} cantidad actualizada en carrito ${cid}`, });
+      await this.service.updateProductQuantity(req.params.cid, req.params.pid, req.body.quantity);
+      res.status(200).json({ message: `Producto ${req.params.pid} cantidad actualizada en carrito ${req.params.cid}` });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
@@ -82,9 +70,8 @@ class CartsController {
 
   deleteProduct = async (req, res) => {
     try {
-      const { cid, pid } = req.params;
-      await this.dao.deleteProduct(cid, pid);
-      res.status(200).json({ message: `Producto ${pid} eliminado del carrito ${cid}` });
+      await this.service.deleteProduct(req.params.cid, req.params.pid);
+      res.status(200).json({ message: `Producto ${req.params.pid} eliminado del carrito ${req.params.cid}` });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
@@ -92,9 +79,8 @@ class CartsController {
 
   clearCart = async (req, res) => {
     try {
-      const { cid } = req.params;
-      await this.dao.clearCart(cid);
-      res.status(200).json({ message: `Carrito ${cid} vaciado` });
+      await this.service.clearCart(req.params.cid);
+      res.status(200).json({ message: `Carrito ${req.params.cid} vaciado` });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
