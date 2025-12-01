@@ -32,10 +32,11 @@ class CartsService {
     if (!cart) throw new Error("Carrito no encontrado");
     const product = await this.productsRepository.getProductBy({ _id: pid });
     if (!product) throw new Error("Producto no encontrado");
-    
-    const existingProductIndex = cart.products.findIndex(p => p.product.toString() === pid);
-    if (existingProductIndex !== -1) {
-      cart.products[existingProductIndex].quantity += 1;
+    if(!cart.products) cart.products = [];
+    console.log(cart);
+    const productInCart = cart.products.find(p => p.product._id === pid);
+    if (productInCart) {
+      productInCart.quantity += 1;
     } else {
       cart.products.push({ product: pid, quantity: 1 });
     }

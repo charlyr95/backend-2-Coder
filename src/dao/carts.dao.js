@@ -10,7 +10,7 @@ class CartsDao {
   }
 
   async getBy(filter) {
-    return await this.model.find(filter).populate("products.product");
+    return await this.model.findOne(filter).populate("products.product");
   }
 
   async create(cart) {
