@@ -5,10 +5,10 @@ class CartsController {
     this.service = CartsService;
   }
 
+  
   getCarts = async (req, res) => {
     try {
-      const result = await this.service.getCarts(req.query);
-      if (!result) return res.status(404).send({ error: "No se encontraron carritos" });
+      const result = await this.service.getCarts();
       res.status(200).json(result);
     } catch (err) {
       res.status(400).json({ error: err.message });

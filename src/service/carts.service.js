@@ -66,7 +66,7 @@ class CartsService {
   }
   
 }
-export default CartsService;
+export default new CartsService();
 
 
 // export class CartsController {
