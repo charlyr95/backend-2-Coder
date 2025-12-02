@@ -16,8 +16,7 @@ class SessionService {
         if (!isValid) throw new Error("Credenciales inválidas");
         const accessToken = generateToken(user);
         if (!accessToken) throw new Error("Error al generar el token de acceso");
-        res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 12 * 60 * 60 * 1000, });
-        return new UserDto(user);
+        return { user: new UserDto(user), accessToken };
     }
 
     async currentUser(accessToken) {

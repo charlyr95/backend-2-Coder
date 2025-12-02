@@ -7,7 +7,8 @@ class SessionController {
   
   login = async (req, res, next) => {
     try {
-      const user = await this.service.login(req.body.email, req.body.password);
+      const {user, accessToken} = await this.service.login(req.body.email, req.body.password);
+      res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 12 * 60 * 60 * 1000, }); // 12 horas
       return res.status(200).send({ message: "Usuario logueado exitosamente", user });
     } catch (error) {
       res.status(500).send({ message: "Error en el login de usuario", error: error.message });
