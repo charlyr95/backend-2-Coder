@@ -3,7 +3,7 @@ import passport from "passport";
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
 import { Strategy as LocalStrategy } from "passport-local";
 import { createHash, isValidPassword } from "../utils/hashPassword.js";
-import UserDao from "../dao/user.dao.js";
+import { UserDao } from "../dao/factory.js";
 import config from "./config.js";
 
 const cookieExtractor = (req) => {

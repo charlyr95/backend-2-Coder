@@ -19,6 +19,16 @@ class SessionService {
         return { user: new UserDto(user), accessToken };
     }
 
+    async register(userData) {
+        const { email, password } = userData;
+        if (!email || !password) throw new Error("Email y contraseña son requeridos");
+        const existingUser = await this.repository.getUserByEmail(email);
+        if (existingUser) throw new Error("El mail no es válido o ya está registrado");
+        userData.password = createHash(password);
+        const newUser = await this.repository.createUser(userData);
+        return new UserDto(newUser);
+    }
+
     async currentUser(accessToken) {
         if (!accessToken) throw new Error("Token no proporcionado");
         const jwtPayload = verifyToken(accessToken);

@@ -1,8 +1,8 @@
-import CartDao from "../dao/carts.dao.js";
+import { CartsDao } from "../dao/factory.js";
 
 class CartsRepository {
   constructor() {
-    this.dao = CartDao;
+    this.dao = CartsDao;
   }
 
   async getCarts() {

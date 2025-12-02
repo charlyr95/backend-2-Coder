@@ -1,4 +1,4 @@
-import ProductsDao from "../dao/products.dao.js";
+import { ProductsDao } from "../dao/factory.js";
 
 class ProductsRepository {
   constructor() {
