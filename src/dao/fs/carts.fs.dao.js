@@ -1,52 +1,67 @@
 import fs from 'fs'
+import CartModel from './models/cart.model.js';
 
 class CartsFsDao {
   constructor() {
-    this.carts = this.#loadCartsFromFile();
+    this.carts = this.#readFile();
     this.filePath = "./data/carts.json";
   }
 
-  async #loadCartsFromFile() {
+  async #readFile() {
     try {
       const data = await fs.promises.readFile(this.filePath, 'utf-8');
-      if(data.length === 0) return [];
+      if(data.length === 0 || !data) return [];
       return JSON.parse(data);
     } catch (error) {
       return [];
     }
   }
 
+  async #writeFile(data) {
+    if (!data) data = [];
+    await fs.promises.writeFile(this.filePath, JSON.stringify(data, null, 2));
+  }
+
   async get() {
-    const data = await fs.promises.readFile(this.filePath, 'utf-8');
-    this.carts = JSON.parse(data);
+    const carts = await this.#readFile();
+    return carts;
   }
 
   async getBy(filter) {
-    const {_id} = filter;
-    return this.carts.find(cart => cart._id === _id);
+    const carts = await this.#readFile();
+    return carts.find((cart) => {
+      for (let key in filter) {
+        if (cart[key] !== filter[key]) return false;
+      }
+      return true;
+    });
   }
 
   async create(cart) {
-    this.carts.push(cart);
-    await fs.promises.writeFile(this.filePath, JSON.stringify(this.carts, null, 2));
-    return cart;
+    const carts = await this.#readFile();
+    const newCart = new CartModel(cart);
+    carts.push(newCart);
+    await this.#writeFile(carts);
+    return newCart;
   }
 
   async update(id, updatedFields) {
-    const index = this.carts.findIndex(cart => cart._id === id);
+    const carts = await this.#readFile();
+    const index = carts.findIndex(cart => cart._id === id);
     if (index !== -1) {
-      this.carts[index] = { ...this.carts[index], ...updatedFields };
-      await fs.promises.writeFile(this.filePath, JSON.stringify(this.carts, null, 2));
-      return this.carts[index];
+      carts[index] = { ...carts[index], ...updatedFields };
+      await this.#writeFile(carts);
+      return carts[index];
     }
     return null;
   }
 
   async delete(id) {
-    const index = this.carts.findIndex(cart => cart._id === id);
+    const carts = await this.#readFile();
+    const index = carts.findIndex(cart => cart._id === id);
     if (index !== -1) {
-      const deletedCart = this.carts.splice(index, 1)[0];
-      await fs.promises.writeFile(this.filePath, JSON.stringify(this.carts, null, 2));
+      const deletedCart = carts.splice(index, 1)[0];
+      await this.#writeFile(carts);
       return deletedCart;
     }
     return null;

@@ -18,13 +18,15 @@ class CartsDao {
   }
 
   async update(id, updatedFields) {
-    return await this.model.findByIdAndUpdate(id, updatedFields, { runValidators: true, new: true });
+    return await this.model.findByIdAndUpdate(id, updatedFields, {
+      runValidators: true,
+      new: true,
+    });
   }
 
   async delete(id) {
     return await this.model.findByIdAndDelete(id);
   }
-
 }
 
 export default new CartsDao();

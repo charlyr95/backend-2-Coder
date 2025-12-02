@@ -1,0 +1,707 @@
+[
+  {
+    "_id": "68c0e1a99b8f682a146cb5e3",
+    "title": "Adidas",
+    "description": "Adidas Vl Court 3.0",
+    "code": "7a120af268",
+    "price": 69990,
+    "status": true,
+    "stock": 15,
+    "category": "calzado",
+    "thumbnails": [
+      "https://production.cdn.vaypol.com/variants/f49330pv89nbyq7or41iq55btmj0/e82c8d6171dd25bb538f2e7263b5bc7dfc6a79352d85923074be76df53fbc6f4"
+    ]
+  },
+  {
+    "_id": "68c0e1a99b8f682a146cb5e0",
+    "title": "Puma",
+    "description": "Puma Skyrocket Lite Adp",
+    "code": "746a2d5fb2",
+    "price": 41990,
+    "status": true,
+    "stock": 20,
+    "category": "calzado",
+    "thumbnails": [
+      "https://sporting.vtexassets.com/arquivos/ids/1509556-1200-1200?v=638653075694230000&width=1200&height=1200&aspect=true",
+      "1230558-400-400"
+    ]
+  },
+  {
+    "_id": "68c0e1a99b8f682a146cb5e2",
+    "title": "Reebok",
+    "description": "Reebok Nano X1",
+    "code": "78199de980",
+    "price": 43990,
+    "status": true,
+    "stock": 19,
+    "category": "calzado",
+    "thumbnails": [
+      "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw8a1dd7c9/products/RE_H02993/RE_H02993-1.JPG",
+      "1230558-400-400"
+    ]
+  },
+  {
+    "_id": "68c0e1a99b8f682a146cb5e1",
+    "title": "Adidas",
+    "description": "Adidas Ultraboost 21",
+    "code": "7aa918adb0",
+    "price": 40990,
+    "status": true,
+    "stock": 20,
+    "category": "calzado",
+    "thumbnails": [
+      "https://www.clicksport.com.ar/16525-large_default/zapatillas-adidas-ultraboost-21-running-hombre.jpg",
+      "1230558-400-400"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb17",
+    "title": "Adidas",
+    "description": "Adidas Fresh Foam 1080v12",
+    "code": "code0020",
+    "price": 30000,
+    "status": true,
+    "stock": 30,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/adidas_20.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb18",
+    "title": "Reebok",
+    "description": "Reebok Future Rider Play On",
+    "code": "code0021",
+    "price": 31500,
+    "status": true,
+    "stock": 31,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/reebok_21.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb21",
+    "title": "Puma",
+    "description": "Puma Skyrocket Lite Adp",
+    "code": "code0030",
+    "price": 45000,
+    "status": true,
+    "stock": 15,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/puma_30.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb26",
+    "title": "New Balance",
+    "description": "New Balance Fresh Foam 1080v12",
+    "code": "code0035",
+    "price": 52500,
+    "status": true,
+    "stock": 20,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/new balance_35.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb0a",
+    "title": "Nike",
+    "description": "Nike Dunk Low Retro",
+    "code": "code0007",
+    "price": 40500,
+    "status": true,
+    "stock": 17,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/nike_7.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb0e",
+    "title": "New Balance",
+    "description": "New Balance Suede Classic XXI",
+    "code": "code0011",
+    "price": 46500,
+    "status": true,
+    "stock": 21,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/new balance_11.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb14",
+    "title": "New Balance",
+    "description": "New Balance Ultraboost 22",
+    "code": "code0017",
+    "price": 55500,
+    "status": true,
+    "stock": 27,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/new balance_17.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb19",
+    "title": "Under Armour",
+    "description": "Under Armour Dunk Low Retro",
+    "code": "code0022",
+    "price": 33000,
+    "status": true,
+    "stock": 32,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/under armour_22.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb32",
+    "title": "New Balance",
+    "description": "New Balance Ultraboost 22",
+    "code": "code0047",
+    "price": 40500,
+    "status": true,
+    "stock": 32,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/new balance_47.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb34",
+    "title": "Nike",
+    "description": "Nike HOVR Phantom 3",
+    "code": "code0049",
+    "price": 43500,
+    "status": true,
+    "stock": 34,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/nike_49.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb0d",
+    "title": "Under Armour",
+    "description": "Under Armour Air Max 90",
+    "code": "code0010",
+    "price": 45000,
+    "status": true,
+    "stock": 20,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/under armour_10.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb1d",
+    "title": "Adidas",
+    "description": "Adidas Suede Classic XXI",
+    "code": "code0026",
+    "price": 39000,
+    "status": true,
+    "stock": 11,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/adidas_26.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb20",
+    "title": "New Balance",
+    "description": "New Balance 574 Core",
+    "code": "code0029",
+    "price": 43500,
+    "status": true,
+    "stock": 14,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/new balance_29.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb2c",
+    "title": "New Balance",
+    "description": "New Balance Suede Classic XXI",
+    "code": "code0041",
+    "price": 31500,
+    "status": true,
+    "stock": 26,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/new balance_41.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb31",
+    "title": "Under Armour",
+    "description": "Under Armour Air Zoom Pegasus 40",
+    "code": "code0046",
+    "price": 39000,
+    "status": true,
+    "stock": 31,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/under armour_46.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb05",
+    "title": "Adidas",
+    "description": "Adidas Ultraboost 22",
+    "code": "code0002",
+    "price": 33000,
+    "status": true,
+    "stock": 12,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/adidas_2.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb1c",
+    "title": "Nike",
+    "description": "Nike Air Max 90",
+    "code": "code0025",
+    "price": 37500,
+    "status": true,
+    "stock": 10,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/nike_25.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb2f",
+    "title": "Adidas",
+    "description": "Adidas 574 Core",
+    "code": "code0044",
+    "price": 36000,
+    "status": true,
+    "stock": 29,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/adidas_44.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb33",
+    "title": "Puma",
+    "description": "Puma Nano X3 Training",
+    "code": "code0048",
+    "price": 42000,
+    "status": true,
+    "stock": 33,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/puma_48.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb06",
+    "title": "Reebok",
+    "description": "Reebok Nano X3 Training",
+    "code": "code0003",
+    "price": 34500,
+    "status": true,
+    "stock": 13,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/reebok_3.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb1e",
+    "title": "Reebok",
+    "description": "Reebok NMD_R1",
+    "code": "code0027",
+    "price": 40500,
+    "status": true,
+    "stock": 12,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/reebok_27.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb2e",
+    "title": "Nike",
+    "description": "Nike Charged Assert 9",
+    "code": "code0043",
+    "price": 34500,
+    "status": true,
+    "stock": 28,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/nike_43.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb1f",
+    "title": "Under Armour",
+    "description": "Under Armour Charged Assert 9",
+    "code": "code0028",
+    "price": 42000,
+    "status": true,
+    "stock": 13,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/under armour_28.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb12",
+    "title": "Reebok",
+    "description": "Reebok Skyrocket Lite Adp",
+    "code": "code0015",
+    "price": 52500,
+    "status": true,
+    "stock": 25,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/reebok_15.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb22",
+    "title": "Nike",
+    "description": "Nike Air Zoom Pegasus 40",
+    "code": "code0031",
+    "price": 46500,
+    "status": true,
+    "stock": 16,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/nike_31.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb30",
+    "title": "Reebok",
+    "description": "Reebok Skyrocket Lite Adp",
+    "code": "code0045",
+    "price": 37500,
+    "status": true,
+    "stock": 30,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/reebok_45.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb0f",
+    "title": "Puma",
+    "description": "Puma NMD_R1",
+    "code": "code0012",
+    "price": 48000,
+    "status": true,
+    "stock": 22,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/puma_12.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb10",
+    "title": "Nike",
+    "description": "Nike Charged Assert 9",
+    "code": "code0013",
+    "price": 49500,
+    "status": true,
+    "stock": 23,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/nike_13.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb16",
+    "title": "Nike",
+    "description": "Nike HOVR Phantom 3",
+    "code": "code0019",
+    "price": 58500,
+    "status": true,
+    "stock": 29,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/nike_19.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb27",
+    "title": "Puma",
+    "description": "Puma Future Rider Play On",
+    "code": "code0036",
+    "price": 54000,
+    "status": true,
+    "stock": 21,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/puma_36.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb0c",
+    "title": "Reebok",
+    "description": "Reebok Club C 85",
+    "code": "code0009",
+    "price": 43500,
+    "status": true,
+    "stock": 19,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/reebok_9.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb1a",
+    "title": "New Balance",
+    "description": "New Balance Forum Low",
+    "code": "code0023",
+    "price": 34500,
+    "status": true,
+    "stock": 33,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/new balance_23.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb23",
+    "title": "Adidas",
+    "description": "Adidas Ultraboost 22",
+    "code": "code0032",
+    "price": 48000,
+    "status": true,
+    "stock": 17,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/adidas_32.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb2d",
+    "title": "Puma",
+    "description": "Puma NMD_R1",
+    "code": "code0042",
+    "price": 33000,
+    "status": true,
+    "stock": 27,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/puma_42.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb07",
+    "title": "Under Armour",
+    "description": "Under Armour HOVR Phantom 3",
+    "code": "code0004",
+    "price": 36000,
+    "status": true,
+    "stock": 14,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/under armour_4.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb0b",
+    "title": "Adidas",
+    "description": "Adidas Forum Low",
+    "code": "code0008",
+    "price": 42000,
+    "status": true,
+    "stock": 18,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/adidas_8.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb11",
+    "title": "Adidas",
+    "description": "Adidas 574 Core",
+    "code": "code0014",
+    "price": 51000,
+    "status": true,
+    "stock": 24,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/adidas_14.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb15",
+    "title": "Puma",
+    "description": "Puma Nano X3 Training",
+    "code": "code0018",
+    "price": 57000,
+    "status": true,
+    "stock": 28,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/puma_18.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb1b",
+    "title": "Puma",
+    "description": "Puma Club C 85",
+    "code": "code0024",
+    "price": 36000,
+    "status": true,
+    "stock": 34,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/puma_24.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb25",
+    "title": "Under Armour",
+    "description": "Under Armour HOVR Phantom 3",
+    "code": "code0034",
+    "price": 51000,
+    "status": true,
+    "stock": 19,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/under armour_34.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb03",
+    "title": "Puma",
+    "description": "Puma Skyrocket Lite Adp",
+    "code": "code0000",
+    "price": 30000,
+    "status": true,
+    "stock": 10,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/puma_0.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb09",
+    "title": "Puma",
+    "description": "Puma Future Rider Play On",
+    "code": "code0006",
+    "price": 39000,
+    "status": true,
+    "stock": 16,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/puma_6.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb24",
+    "title": "Reebok",
+    "description": "Reebok Nano X3 Training",
+    "code": "code0033",
+    "price": 49500,
+    "status": true,
+    "stock": 18,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/reebok_33.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb28",
+    "title": "Nike",
+    "description": "Nike Dunk Low Retro",
+    "code": "code0037",
+    "price": 55500,
+    "status": true,
+    "stock": 22,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/nike_37.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb2a",
+    "title": "Reebok",
+    "description": "Reebok Club C 85",
+    "code": "code0039",
+    "price": 58500,
+    "status": true,
+    "stock": 24,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/reebok_39.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb04",
+    "title": "Nike",
+    "description": "Nike Air Zoom Pegasus 40",
+    "code": "code0001",
+    "price": 31500,
+    "status": true,
+    "stock": 11,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/nike_1.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb08",
+    "title": "New Balance",
+    "description": "New Balance Fresh Foam 1080v12",
+    "code": "code0005",
+    "price": 37500,
+    "status": true,
+    "stock": 15,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/new balance_5.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb13",
+    "title": "Under Armour",
+    "description": "Under Armour Air Zoom Pegasus 40",
+    "code": "code0016",
+    "price": 54000,
+    "status": true,
+    "stock": 26,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/under armour_16.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb29",
+    "title": "Adidas",
+    "description": "Adidas Forum Low",
+    "code": "code0038",
+    "price": 57000,
+    "status": true,
+    "stock": 23,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/adidas_38.jpg"
+    ]
+  },
+  {
+    "_id": "68c3828c912bc80ffdc2cb2b",
+    "title": "Under Armour",
+    "description": "Under Armour Air Max 90",
+    "code": "code0040",
+    "price": 30000,
+    "status": true,
+    "stock": 25,
+    "category": "calzado",
+    "thumbnails": [
+      "https://example.com/images/under armour_40.jpg"
+    ]
+  }
+]
