@@ -10,6 +10,7 @@ const config = {
   NODE_ENV: process.env.NODE_ENV || "development",
   EMAIL_USER: process.env.EMAIL_USER,
   EMAIL_PASS: process.env.EMAIL_PASS,
+  EXPIRE_EMAIL_TOKEN: process.env.EXPIRE_EMAIL_TOKEN || "1h"
 };
 
 export default config;

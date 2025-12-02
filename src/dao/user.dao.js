@@ -1,36 +1,30 @@
-import User from "./models/user.model.js";
+import UserModel from "./models/user.model.js";
 
 class UserDao {
-    constructor(model) {
-        this.model = model;
+    constructor() {
+        this.model = UserModel;
     }
 
-    async createUser(userData) {
+    async create(userData) {
         const user = new this.model(userData);
         return await user.save();
     }
 
-    async getUserById(userId) {
-        return await this.model.findById(userId);
-    }
-
-    async getUserByEmail(email) {
-        // return full user and password (that has select false in schema)
-        const user = await this.model.findOne({ email: email }).select("+password");
-        return user;
-    }
-
-    async updateUser(userId, userData) {
-        return await this.model.findByIdAndUpdate(userId, userData, { new: true });
-    }
-
-    async deleteUser(userId) {
-        return await this.model.findByIdAndDelete(userId);
-    }
-
-    async getAllUsers() {
+    async get(){
         return await this.model.find();
+    }
+
+    async getBy(filter) {
+        return await this.model.findOne(filter).select("+password");
+    }
+
+    async update(userId, userData) {
+        return await this.model.findByIdAndUpdate(userId, userData, { runValidators: true, new: true }).select("+password");
+    }
+
+    async delete(userId) {
+        return await this.model.findByIdAndDelete(userId);
     }
 }
 
-export default new UserDao(User);
+export default new UserDao();
