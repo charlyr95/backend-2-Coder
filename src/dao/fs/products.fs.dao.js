@@ -1,8 +1,10 @@
 import fs from 'fs'
+import ProductModel from './models/product.model.js';
 
-class ProductsFileSystemDao {
+class ProductsFsDao {
     constructor() {
-        this.model = ProductModel;
+        this.products = [];
+        this.filePath = './data/products.json';
     }
 
     async get(filter, options) {
@@ -14,13 +16,14 @@ class ProductsFileSystemDao {
     }
 
     async create(product) {
-        const newProduct = new this.model(product);
+        const newProduct = new ProductModel(product);
         return await newProduct.save();
     }
 
     async createMany(products) {
-        const newProducts = products.map((product) => new this.model(product));
-        return await this.model.insertMany(newProducts);
+        const newProducts = products.map((product) => new ProductModel(product));
+        await fs.promises.writeFile(this.filePath, JSON.stringify(newProducts, null, 2));
+        return newProducts;
     }
 
     async update(id, updatedFields) {
@@ -32,4 +35,4 @@ class ProductsFileSystemDao {
     }
 }
 
-export default new ProductsDao();
+export default new ProductsFsDao();

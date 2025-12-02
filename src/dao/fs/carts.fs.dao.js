@@ -2,21 +2,17 @@ import fs from 'fs'
 
 class CartsFsDao {
   constructor() {
-    this.carts = [];
+    this.carts = this.#loadCartsFromFile();
     this.filePath = "./data/carts.json";
-    this.#loadCartsFromFile();
   }
 
   async #loadCartsFromFile() {
     try {
       const data = await fs.promises.readFile(this.filePath, 'utf-8');
-      this.carts = JSON.parse(data);
+      if(data.length === 0) return [];
+      return JSON.parse(data);
     } catch (error) {
-      if (error.code === 'ENOENT') {
-        this.carts = [];
-      } else {
-        throw error;
-      }
+      return [];
     }
   }
 
