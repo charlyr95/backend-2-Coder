@@ -1,15 +1,16 @@
 import SessionService from "../service/session.service.js";
+import UserDto from "../dto/user.dto.js";
 
 class SessionController {
   constructor() {
     this.service = SessionService;
   }
-  
+
   login = async (req, res, next) => {
     try {
-      const {user, accessToken} = await this.service.login(req.body.email, req.body.password);
+      const { user, accessToken } = req;
       res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 12 * 60 * 60 * 1000, }); // 12 horas
-      return res.status(200).send({ message: "Usuario logueado exitosamente", user });
+      return res.status(200).send({ message: "Usuario logueado exitosamente", user: new UserDto(user) });
     } catch (error) {
       res.status(500).send({ message: "Error en el login de usuario", error: error.message });
     }
@@ -17,8 +18,8 @@ class SessionController {
 
   register = async (req, res, next) => {
     try {
-      const user = await this.service.register(req.body);
-      res.status(201).send({ message: "Usuario registrado exitosamente", user });
+      const { user } = req;
+      res.status(200).send({ message: "Usuario registrado exitosamente", user: new UserDto(user) });
     } catch (error) {
       res.status(500).send({ message: "Error en el registro de usuario", error: error.message });
     }
@@ -27,7 +28,7 @@ class SessionController {
   current = async (req, res, next) => {
     try {
       const user = await this.service.currentUser(req.cookies.accessToken);
-      res.status(201).send({ message: "Usuario registrado exitosamente", user });
+      res.status(200).send({ message: "Usuario obtenido exitosamente", user: new UserDto(user) });
     } catch (error) {
       res.status(500).send({ message: "Error en el registro de usuario", error: error.message });
     }
@@ -45,9 +46,9 @@ class SessionController {
 
   resetPassword = async (req, res, next) => {
     try {
-    const result = await this.service.resetPassword(req.query.token, req.body.password);
-    res.status(200).send({ message: "Contraseña reseteada exitosamente" });
-    } catch(error) {
+      const result = await this.service.resetPassword(req.query.token, req.body.password);
+      res.status(200).send({ message: "Contraseña reseteada exitosamente" });
+    } catch (error) {
       res.status(500).send({ message: "Error al resetear la contraseña", error: error.message });
     }
   }
