@@ -1,5 +1,6 @@
 import config from "../config/config.js"
 import connectDB from "../config/mongo.js"
+import userAdmin from "./user.admin.js"
 
 let UserDao
 let CartsDao
@@ -26,6 +27,7 @@ switch (config.PERSISTENCE) {
         CartsDao = await import("./memory/carts.mem.dao.js").then(module => module.default)
         ProductsDao = await import("./memory/products.mem.dao.js").then(module => module.default)
         console.log("Using MEMORY persistence")
+        UserDao.create(userAdmin) // Create admin user in memory persistence
         break;
 }
 
