@@ -1,16 +1,19 @@
 import { Router } from "express";
 import controller from "../controllers/carts.controller.js";
-import authRole from "../middlewares/authRole.js"
+import { passportCall } from "../middlewares/passportCall.js";
 
 const router = Router();
 
+// Public routes
 router.get("/", controller.getCarts);
 router.get("/:cid", controller.getCartById);
-router.post("/", controller.addCart);
-router.post("/:cid/product/:pid", authRole("admin"), controller.addProduct);
-router.delete("/:cid/product/:pid", authRole("admin"), controller.deleteProduct);
-router.put("/:cid", authRole("admin"), controller.updateCartProducts);
-router.put("/:cid/product/:pid", authRole("admin"), controller.updateProductQuantity);
-router.delete("/:cid", authRole("admin"), controller.clearCart);
+
+// Protected routes
+router.post("/", passportCall("current"), controller.addCart);
+router.post("/:cid/product/:pid", passportCall("current"), controller.addProduct);
+router.put("/:cid", passportCall("current"), controller.updateCartProducts);
+router.delete("/:cid", passportCall("current"), controller.clearCart);
+router.put("/:cid/product/:pid", passportCall("current"), controller.updateProductQuantity);
+router.delete("/:cid/product/:pid", passportCall("current"), controller.deleteProduct);
 
 export default router;

@@ -8,9 +8,12 @@ class SessionController {
 
   login = async (req, res, next) => {
     try {
-      const { user, accessToken } = req;
-      res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 12 * 60 * 60 * 1000, }); // 12 horas
-      return res.status(200).send({ message: "Usuario logueado exitosamente", user: new UserDto(user) });
+      // Login con Passport
+      const { user } = req;
+      if (!user) throw new Error("Error en el login del usuario");
+      if (!user.accessToken) throw new Error("Token no encontrado");
+      res.cookie("accessToken", user.accessToken, { httpOnly: true, maxAge: 12 * 60 * 60 * 1000, }); // 12 horas
+      return res.status(200).send({ message: "Usuario logueado exitosamente", user: new UserDto(user)});
     } catch (error) {
       res.status(500).send({ message: "Error en el login de usuario", error: error.message });
     }
@@ -18,7 +21,9 @@ class SessionController {
 
   register = async (req, res, next) => {
     try {
+      // Registro con Passport
       const { user } = req;
+      if (!user) throw new Error("Error en el registro del usuario");
       res.status(200).send({ message: "Usuario registrado exitosamente", user: new UserDto(user) });
     } catch (error) {
       res.status(500).send({ message: "Error en el registro de usuario", error: error.message });
@@ -27,7 +32,9 @@ class SessionController {
 
   current = async (req, res, next) => {
     try {
-      const user = await this.service.currentUser(req.cookies.accessToken);
+      // Obtener usuario actual con Passport
+      const { user } = req;
+      if (!user) throw new Error("Usuario no autenticado");
       res.status(200).send({ message: "Usuario obtenido exitosamente", user: new UserDto(user) });
     } catch (error) {
       res.status(500).send({ message: "Error en el registro de usuario", error: error.message });
