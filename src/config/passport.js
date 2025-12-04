@@ -58,7 +58,7 @@ export const InitializePassport = () => {
       },
       async (jwtPayload, done) => {
         try {
-          const user = await userService.getUserByEmail(jwtPayload.email);
+          const user = await userService.getUserById(jwtPayload.id);
           if (!user) throw new Error ("Credenciales inválidas");
           done(null, user);
         } catch (error) {
