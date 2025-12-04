@@ -1,8 +1,14 @@
 import UserModel from "./models/user.model.js";
+import userAdmin from "../../utils/userAdmin.js";
 
 class UserDao {
     constructor() {
         this.users = [];
+        this.#createAdmin();
+    }
+
+    #createAdmin() {
+        this.users.push(new UserModel(userAdmin));
     }
 
     async create(userData) {
