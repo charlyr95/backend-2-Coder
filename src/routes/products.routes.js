@@ -9,7 +9,7 @@ const router = Router();
 router.get("/", controller.getProducts)
 router.get("/:pid", controller.getProductById);
 
-// Protected routes
+// Admin routes
 router.post("/",  passportCall("current"), authRole("admin"), controller.addProduct);
 router.put("/:pid", passportCall("current"), authRole("admin"), controller.updateProduct);
 router.delete("/:pid", passportCall("current"), authRole("admin"), controller.deleteProduct);
