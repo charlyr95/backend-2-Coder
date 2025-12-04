@@ -1,6 +1,6 @@
 import config from "../config/config.js"
 import connectDB from "../config/mongo.js"
-import userAdmin from "./user.admin.js"
+import userAdmin from "../utils/userAdmin.js"
 
 let UserDao
 let CartsDao
