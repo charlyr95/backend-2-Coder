@@ -23,5 +23,14 @@
   {
     "_id": "676949d7-daba-46ce-a807-62a4281f285a",
     "products": []
+  },
+  {
+    "_id": "47ece3b1-99a0-4b59-a333-9ff3bed195c1",
+    "products": [
+      {
+        "product": "68c3828c912bc80ffdc2cb29",
+        "quantity": 4
+      }
+    ]
   }
 ]
