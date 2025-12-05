@@ -3,7 +3,6 @@ import TicketModel from "./models/ticket.model.js";
 
 class TicketFsDao {
     constructor() {
-        this.tickets = this.#readFile();
         this.filePath = "./data/tickets.json";
     }
 
@@ -23,16 +22,17 @@ class TicketFsDao {
     }
 
 
-    async create(userData) {
-        const newUser = new TicketModel(userData);
-        this.tickets.push(newUser);
-        await this.#writeFile(this.tickets);
-        return newUser;
+    async create(ticketData) {
+        const tickets = await this.#readFile();
+        const newTicket = new TicketModel(ticketData);
+        tickets.push(newTicket);
+        await this.#writeFile(tickets);
+        return newTicket;
     }
 
     async get() {
-        this.tickets = await this.#readFile();
-        return this.tickets;
+        const tickets = await this.#readFile();
+        return tickets;
     }
 
     async getBy(filter) {

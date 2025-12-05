@@ -3,7 +3,6 @@ import UserModel from "./models/user.model.js";
 
 class UserFsDao {
     constructor() {
-        this.users = this.#readFile();
         this.filePath = "./data/users.json";
     }
 

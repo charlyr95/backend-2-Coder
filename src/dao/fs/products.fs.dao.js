@@ -3,7 +3,6 @@ import ProductModel from "./models/product.model.js";
 
 class ProductsFsDao {
     constructor() {
-        this.products = this.#readFile();
         this.filePath = "./data/products.json";
     }
 

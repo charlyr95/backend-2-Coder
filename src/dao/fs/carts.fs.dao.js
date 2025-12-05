@@ -3,7 +3,6 @@ import CartModel from './models/cart.model.js';
 
 class CartsFsDao {
     constructor() {
-        this.carts = this.#readFile();
         this.filePath = "./data/carts.json";
     }
 
