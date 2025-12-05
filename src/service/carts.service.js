@@ -29,7 +29,6 @@ class CartsService {
   }
 
   async getCartById(id) {
-    //TODO: Implementar obtener carrito del usuario autenticado
     if (!id) throw new Error("Cart ID es requerido");
     const cart = await this.cartsRepository.getCartBy({ _id: id });
     if (!cart) throw new Error("Carrito no encontrado");
@@ -43,20 +42,17 @@ class CartsService {
   }
 
   async updateCart(id, updatedFields) {
-    // TODO: Implementar actualización de carrito para usuario autenticado
     if (!id) throw new Error("Cart ID es requerido");
     if (!updatedFields) throw new Error("Updated fields data es requerido");
     return await this.cartsRepository.updateCart(id, updatedFields);
   }
 
   async deleteCart(id) {
-    // TODO: Implementar eliminación de carrito para usuario autenticado
     if (!id) throw new Error("Cart ID es requerido");
     return await this.cartsRepository.deleteCart(id);
   }
 
   async addProduct(cid, pid) {
-    // TODO: Implementar agregar producto al carrito del usuario autenticado
     if (!cid) throw new Error("Cart ID es requerido");
     if (!pid) throw new Error("Product ID es requerido");
     const cart = await this.cartsRepository.getCartBy({ _id: cid });
@@ -73,7 +69,6 @@ class CartsService {
   }
 
   async clearCart(cid) {
-    // TODO: Implementar vaciar carrito del usuario autenticado
     if (!cid) throw new Error("Cart ID es requerido");
     const cart = await this.cartsRepository.getCartBy({ _id: cid });
     if (!cart) throw new Error("Carrito no encontrado");
@@ -81,7 +76,6 @@ class CartsService {
   }
 
   async deleteProduct(cid, pid) {
-    // TODO: Implementar eliminar producto del carrito del usuario autenticado
     if (!cid) throw new Error("Cart ID es requerido");
     if (!pid) throw new Error("Product ID es requerido");
     const cart = await this.cartsRepository.getCartBy({ _id: cid });
@@ -92,7 +86,6 @@ class CartsService {
   }
 
   async updateProductQuantity(cid, pid, quantity) {
-    // TODO: Implementar actualizar cantidad de producto en el carrito del usuario autenticado
     if (!cid) throw new Error("Cart ID es requerido");
     if (!pid) throw new Error("Product ID es requerido");
     if (quantity == null) throw new Error("Quantity es requerido");
@@ -105,7 +98,6 @@ class CartsService {
   }
 
   async updateCartProducts(cid, products) {
-    // TODO: Implementar actualizar productos del carrito del usuario autenticado
     if (!cid) throw new Error("Cart ID es requerido");
     const cart = await this.cartsRepository.getCartBy({ _id: cid });
     if (!cart) throw new Error("Carrito no encontrado");
