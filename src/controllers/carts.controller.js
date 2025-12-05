@@ -26,7 +26,7 @@ class CartsController {
   addCart = async (req, res) => {
     try {
       const { _id } = req.user || {}; // Extraído desde current strategy
-      const { products = [] } = req.body;
+      const { products = [] } = req.body || {};
       const result = await this.service.addCart(products, _id);
       res.status(201).json(result);
     } catch (err) {
@@ -37,7 +37,7 @@ class CartsController {
   addProduct = async (req, res) => {
     try {
       const result = await this.service.addProduct(req.params.cid, req.params.pid, req.body);
-      res.status(200).json({ message: `Producto ${req.params.pid} agregado al carrito ${req.params.cid}`, cart: result });
+      res.status(200).json({ message: `Producto ${req.params.pid} agregado al carrito ${req.params.cid}`});
     } catch (err) {
       res.status(400).json({ error: err.message });
     }
