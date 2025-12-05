@@ -5,7 +5,7 @@ const ticketCollection = "tickets";
 const ticketSchema = new Schema({
   code: {
     type: String,
-    default: () => uuidv4(),
+    default: () => Date.now().toString(36) + "-" + Math.random().toString(36).substr(2, 9),
     required: true,
     unique: true,
   },
@@ -13,12 +13,18 @@ const ticketSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  amount: {
+  total_amount: {
     type: Number,
     required: true,
   },
+  order_detail: {
+    type: Array,
+    default: [],
+    required: true,
+  },
   purchaser: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "user",
     required: true,
   },
 });
