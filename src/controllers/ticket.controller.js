@@ -7,9 +7,10 @@ class TicketController {
 
     createTicket = async (req, res, next) => {
         try {
-            res.status(201).send({ message: "Ticket creado exitosamente" });
+            const result = await this.service.createTicket(req.user);
+            res.status(201).send({ message: "Ticket creado exitosamente", ticket: result });
         } catch (error) {
-            res.status(500).send({ message: "Error al crear el ticket" });
+            res.status(500).send({ message: "Error al crear el ticket", error: error.message });
         }
     }
 
