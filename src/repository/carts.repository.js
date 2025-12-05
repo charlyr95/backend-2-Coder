@@ -13,8 +13,8 @@ class CartsRepository {
     return await this.dao.getBy(filter);
   }
 
-  async addCart() {
-    return await this.dao.create();
+  async addCart(cart) {
+    return await this.dao.create(cart);
   }
 
   async updateCart(id, updatedFields) {
