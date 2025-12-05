@@ -1,15 +1,15 @@
 import { randomUUID } from "crypto"; // Nativo de Node.js para generar IDs únicas 
 
 class CartModel {
-  constructor(cart) {
-    this._id = cart._id || randomUUID();
-    this.products = (cart.products || []).map(p => new ProductCartModel(p)) || []; 
+  constructor({_id, products} = {}) {
+    this._id = _id || randomUUID();
+    this.products = products ? products.map(p => new ProductInCart(p)) : [];
   }
 }
 
-class ProductCartModel {
-  constructor(product) {
-    this.productId = product.productId;
+class ProductInCart {
+  constructor(product = {}) {
+    this.product = product.product || product._id || '';
     this.quantity = product.quantity || 1;
   }
 }
