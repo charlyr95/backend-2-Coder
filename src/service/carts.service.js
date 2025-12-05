@@ -36,9 +36,10 @@ class CartsService {
     return cart;
   }
 
-  async addCart() {
-    //TODO: Implementar creación de carrito para usuario autenticado
-    return await this.cartsRepository.addCart();
+  async addCart(products, userId) {
+    const newCart = await this.cartsRepository.addCart({products});
+    if(newCart) await this.#updateUserCart(userId, newCart._id);
+    return newCart;
   }
 
   async updateCart(id, updatedFields) {

@@ -25,7 +25,9 @@ class CartsController {
 
   addCart = async (req, res) => {
     try {
-      const result = await this.service.addCart(req.body);
+      const { _id } = req.user || {}; // Extraído desde current strategy
+      const { products = [] } = req.body;
+      const result = await this.service.addCart(products, _id);
       res.status(201).json(result);
     } catch (err) {
       res.status(400).json({ error: err.message });

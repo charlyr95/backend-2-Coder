@@ -16,8 +16,9 @@ class CartsMemoryDao {
   }
 
   async create(cart) {
-    this.carts.push(new CartModel(cart));
-    return cart;
+    const newCart = new CartModel(cart);
+    this.carts.push(newCart);
+    return newCart;
   }
 
   async update(id, updatedFields) {
