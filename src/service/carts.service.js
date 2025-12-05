@@ -20,8 +20,7 @@ class CartsService {
   #updateUserCart = async (userId, cartId) => {
     const user = await this.userRepository.getUserById(userId);
     if (!user) throw new Error("Usuario no encontrado");
-    user.cart = cartId;
-    await this.userRepository.updateUser(userId, user);
+    await this.userRepository.updateUser(userId, {cart: cartId});
   }
 
   async getCarts() {
@@ -80,8 +79,9 @@ class CartsService {
     if (!pid) throw new Error("Product ID es requerido");
     const cart = await this.cartsRepository.getCartBy({ _id: cid });
     if (!cart) throw new Error("Carrito no encontrado");
-    const filteredProducts = cart.products.filter(p => p.product !== pid && p.product._id !== pid);
-    if (filteredProducts.length === cart.products.length) throw new Error("Producto no encontrado en el carrito");
+    const productIndex = cart.products.findIndex(p => p.product._id === pid || p.product === pid);
+    if (productIndex === -1) throw new Error("Producto no encontrado en el carrito");
+    const filteredProducts = cart.products.splice(productIndex, 1);
     return await this.cartsRepository.updateCart(cid, { products: filteredProducts });
   }
 
