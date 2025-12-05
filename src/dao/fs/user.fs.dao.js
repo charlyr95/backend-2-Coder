@@ -3,53 +3,63 @@ import UserModel from "./models/user.model.js";
 
 class UserFsDao {
     constructor() {
-        this.users = this.#loadUsers();
+        this.users = this.#readFile();
         this.filePath = "./data/users.json";
     }
 
-    async #loadUsers() {
-        // try to get users from file, if file doesn't exist initialize with empty array
+    async #readFile() {
         try {
-            const data = await fs.promises.readFile(this.filePath, "utf-8");
-            if(data.length === 0) return [];
+            const data = await fs.promises.readFile(this.filePath, 'utf-8');
+            if (data.length === 0 || !data) return [];
             return JSON.parse(data);
         } catch (error) {
             return [];
         }
     }
 
+    async #writeFile(data) {
+        if (!data) data = [];
+        await fs.promises.writeFile(this.filePath, JSON.stringify(data, null, 2));
+    }
+
     async create(userData) {
+        const users = await this.#readFile();
         const newUser = new UserModel(userData);
-        this.users.push(newUser);
-        await fs.promises.writeFile(this.filePath, JSON.stringify(this.users, null, 2));
+        users.push(newUser);
+        await this.#writeFile(users);
         return newUser;
     }
 
     async get() {
-        this.users = await this.#loadUsers();
-        return this.users;
+        const users = await this.#readFile();
+        return users;
     }
 
     async getBy(filter) {
-        const users = await this.get();
+        const users = await this.#readFile();
         return users.find(user => {
             return Object.keys(filter).every(key => user[key] === filter[key]);
         });
     }
 
     async update(userId, userData) {
-        const index = this.users.findIndex(user => user._id === userId);
+        const users = await this.#readFile();
+        const index = users.findIndex(user => user._id === userId);
         if (index !== -1) {
-            this.users[index] = new UserModel({ ...this.users[index], ...userData });
-            return this.users[index];
+            users[index] = new UserModel({ ...users[index], ...userData });
+            await this.#writeFile(users);
+            return users[index];
         }
+
         return null;
     }
 
     async delete(userId) {
-        const index = this.users.findIndex(user => user._id === userId);
+        const users = await this.#readFile();
+        const index = users.findIndex(user => user._id === userId);
         if (index !== -1) {
-            const deletedUser = this.users.splice(index, 1);
+            const deletedUser = users.splice(index, 1);
+            await this.#writeFile(users);
             return deletedUser[0];
         }
         return null;

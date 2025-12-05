@@ -3,54 +3,63 @@ import TicketModel from "./models/ticket.model.js";
 
 class TicketFsDao {
     constructor() {
-        this.tickets = this.#loadTickets();
+        this.tickets = this.#readFile();
         this.filePath = "./data/tickets.json";
     }
 
-    async #loadTickets() {
-        // try to get users from file, if file doesn't exist initialize with empty array
+    async #readFile() {
         try {
-            const data = await fs.promises.readFile(this.filePath, "utf-8");
-            if(data.length === 0) return [];
+            const data = await fs.promises.readFile(this.filePath, 'utf-8');
+            if (data.length === 0 || !data) return [];
             return JSON.parse(data);
         } catch (error) {
             return [];
         }
     }
 
+    async #writeFile(data) {
+        if (!data) data = [];
+        await fs.promises.writeFile(this.filePath, JSON.stringify(data, null, 2));
+    }
+
+
     async create(userData) {
         const newUser = new TicketModel(userData);
         this.tickets.push(newUser);
-        await fs.promises.writeFile(this.filePath, JSON.stringify(this.tickets, null, 2));
+        await this.#writeFile(this.tickets);
         return newUser;
     }
 
     async get() {
-        this.tickets = await this.#loadTickets();
+        this.tickets = await this.#readFile();
         return this.tickets;
     }
 
     async getBy(filter) {
-        const users = await this.get();
-        return users.find(user => {
-            return Object.keys(filter).every(key => user[key] === filter[key]);
+        const tickets = await this.#readFile();
+        return tickets.find(ticket => {
+            return Object.keys(filter).every(key => ticket[key] === filter[key]);
         });
     }
 
     async update(userId, userData) {
-        const index = this.tickets.findIndex(user => user._id === userId);
+        const tickets = await this.#readFile();
+        const index = tickets.findIndex(ticket => ticket._id === userId);
         if (index !== -1) {
-            this.tickets[index] = new TicketModel({ ...this.tickets[index], ...userData });
-            return this.tickets[index];
+            tickets[index] = new TicketModel({ ...tickets[index], ...userData });
+            await this.#writeFile(tickets);
+            return tickets[index];
         }
         return null;
     }
 
     async delete(userId) {
-        const index = this.tickets.findIndex(user => user._id === userId);
+        const tickets = await this.#readFile();
+        const index = tickets.findIndex(ticket => ticket._id === userId);
         if (index !== -1) {
-            const deletedUser = this.tickets.splice(index, 1);
-            return deletedUser[0];
+            const deletedTicket = tickets.splice(index, 1);
+            await this.#writeFile(tickets);
+            return deletedTicket[0];
         }
         return null;
     }
