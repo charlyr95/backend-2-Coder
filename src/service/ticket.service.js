@@ -1,12 +1,14 @@
 import TicketRepository from "../repository/ticket.repository.js";
 import ProductRepository from "../repository/products.repository.js";
 import CartRepository from "../repository/carts.repository.js";
+import UserRepository from "../repository/user.repository.js";
 
 class TicketService {
   constructor() {
     this.repository = TicketRepository;
     this.productRepository = ProductRepository;
     this.cartRepository = CartRepository;
+    this.userRepository = UserRepository;
   }
 
   async createTicket(user) {
@@ -52,6 +54,13 @@ class TicketService {
     } catch (error) {
       // throw new Error("Error al actualizar el stock de los productos");
       return newTicket; // Retornar el ticket aunque falle la actualización de stock
+    }
+    
+    // Remover carrito asociado a usuario
+    try {
+      await this.userRepository.updateUser(user._id, { cart: null });
+    } catch (error) {
+      return newTicket; // Retornar el ticket aunque falle la actualización del usuario
     }
     return newTicket;
   }

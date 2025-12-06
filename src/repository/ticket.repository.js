@@ -1,5 +1,5 @@
 import { TicketDao } from "../dao/factory.js";
-// import TicketDao from "../dao/fs/ticket.fs.dao.js";
+// import TicketDao from "../dao/mongo/ticket.mongo.dao.js";
 
 class TicketRepository {
     constructor() {
@@ -7,7 +7,6 @@ class TicketRepository {
     }
 
     async createTicket(ticketData) {
-        console.log("Creating ticket with data:", ticketData);
         const ticket = await this.dao.create(ticketData);
         return ticket;
     }
