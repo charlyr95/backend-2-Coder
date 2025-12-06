@@ -16,6 +16,7 @@ class ProductsMemoryDao {
       return true;
     }
     );
+    if (!products || products.length === 0) throw new Error("No se encontraron productos");
     // Implement options like limit and skip if provided
     let result = products;
     if (options) {
@@ -31,7 +32,7 @@ class ProductsMemoryDao {
   }
 
   async getBy(filter) {
-    return this.products.find((product) => {
+    const result = this.products.find((product) => {
       for (let key in filter) {
         if (product[key] !== filter[key]) {
           return false;
@@ -39,6 +40,8 @@ class ProductsMemoryDao {
       }
       return true;
     });
+    if (!result) throw new Error("Producto no encontrado");
+    return result;
   }
 
   async create(product) {
@@ -55,20 +58,16 @@ class ProductsMemoryDao {
 
   async update(id, updatedFields) {
     const index = this.products.findIndex(product => product._id === id);
-    if (index !== -1) {
-      this.products[index] = { ...this.products[index], ...updatedFields };
-      return this.products[index];
-    }
-    return null;
+    if (index === -1) throw new Error(`Producto ${id} no encontrado`);
+    this.products[index] = { ...this.products[index], ...updatedFields };
+    return this.products[index];
   }
 
   async delete(id) {
     const index = this.products.findIndex(product => product._id === id);
-    if (index !== -1) {
-      const deletedProduct = this.products.splice(index, 1);
-      return deletedProduct[0];
-    }
-    return null;
+    if (index === -1) throw new Error(`Producto ${id} no encontrado`);
+    const deletedProduct = this.products.splice(index, 1);
+    return deletedProduct[0];
   }
 }
 

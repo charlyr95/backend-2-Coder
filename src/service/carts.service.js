@@ -101,6 +101,7 @@ class CartsService {
     if (!cid) throw new Error("Cart ID es requerido");
     const cart = await this.cartsRepository.getCartBy({ _id: cid });
     if (!cart) throw new Error("Carrito no encontrado");
+    if (!products || !Array.isArray(products)) throw new Error("Products debe ser un array [{product, quantity}]");
     return await this.cartsRepository.updateCart(cid, { products });
   }
 

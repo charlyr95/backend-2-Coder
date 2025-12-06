@@ -48,20 +48,8 @@ class SessionService {
       from: '"Ecommerce 2.0" <no-reply@mail.com>',
       to: email,
       subject: "Password Recovery",
-      html: `<p>
-      Este es una URL API para resetear tu contraseña, utilice método POST en la siguiente URL:
-      </p>
-      <p>
-      ${resetLink}
-      </p>
-      <p>
-      body: 
-      </p>
-      <p>
-      {
-        "password": "nuevaContraseña"
-      }
-      </p>`,
+      html: `<p>Este es una URL API para resetear tu contraseña, utilice método POST en la siguiente URL:</p>
+      <p>${resetLink}</p><p>body:</p><p>{ "password": "nuevaContraseña" }</p>`,
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {

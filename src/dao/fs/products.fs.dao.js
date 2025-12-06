@@ -23,12 +23,15 @@ class ProductsFsDao {
 
     async get(filter, options) {  //simulate mongoose-like filtering and options (like limit, skip)
         const products = await this.#readFile();
+        if (!products || products.length === 0) throw new Error("No se encontraron productos");
         const filteredProducts = products.filter((product) => {
             for (let key in filter) {
                 if (product[key] !== filter[key]) return false;
             }
             return true;
         });
+        if (!filteredProducts || filteredProducts.length === 0) 
+            throw new Error("No se encontraron productos con los filtros proporcionados");
         let result = filteredProducts;
         if (options) {
             const { limit, skip } = options;
@@ -44,7 +47,8 @@ class ProductsFsDao {
 
     async getBy(filter) {
         const products = await this.#readFile();
-        return products.find((product) => {
+        if (!products || products.length === 0) throw new Error("No se encontraron productos");
+        const results = products.find((product) => {
             for (let key in filter) {
                 if (product[key] !== filter[key]) {
                     return false;
@@ -52,6 +56,8 @@ class ProductsFsDao {
             }
             return true;
         });
+        if (!results) throw new Error("Producto no encontrado");
+        return results;
     }
 
     async create(product) {
@@ -73,9 +79,7 @@ class ProductsFsDao {
     async update(id, updatedFields) {
         const products = await this.#readFile();
         const index = products.findIndex((product) => product._id === id);
-        if (index === -1) {
-            return null;
-        }
+        if (index === -1) throw new Error(`Producto ${id} no encontrado`);
         products[index] = { ...products[index], ...updatedFields };
         await this.#writeFile(products);
         return products[index];
@@ -84,9 +88,7 @@ class ProductsFsDao {
     async delete(id) {
         const products = await this.#readFile();
         const index = products.findIndex((product) => product._id === id);
-        if (index === -1) {
-            return null;
-        }
+        if (index === -1) throw new Error(`Producto ${id} no encontrado`);
         const deletedProduct = products.splice(index, 1)[0];
         await this.#writeFile(products);
         return deletedProduct;
