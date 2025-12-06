@@ -24,7 +24,6 @@ class CartsRepository {
   async deleteCart(id) {
     return await this.dao.delete(id);
   }
-
 }
 
 export default new CartsRepository();
