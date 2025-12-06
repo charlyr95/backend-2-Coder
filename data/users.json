@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "d6fc75b7-013b-4236-9bd9-00ee1edc2878",
+    "first_name": "User",
+    "last_name": "Test",
+    "email": "admin@test.com",
+    "password": "$2b$10$2NBgEQqKZ72FdQu1xTfPk.CP3kP14a0Ct3LQ6iMiIGOBx.t6LvW/a",
+    "role": "admin",
+    "age": 0,
+    "cart": "6ac898f8-6a7e-4728-80b9-eaec283cd1f3"
+  },
+  {
+    "_id": "693365e92b0182bc439dc547",
+    "first_name": "User",
+    "last_name": "Test",
+    "email": "user@test.com",
+    "password": "$2b$10$2NBgEQqKZ72FdQu1xTfPk.CP3kP14a0Ct3LQ6iMiIGOBx.t6LvW/a",
+    "role": "user",
+    "age": 0,
+    "cart": "03ba4947-34a8-45fd-803f-fdfc9d864fa0"
+  }
+]
