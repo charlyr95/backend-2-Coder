@@ -4,6 +4,6 @@ export const userCart = (req, res, next) => {
     if (!req.user.role === "admin") next(); // Los admins pueden acceder a cualquier carrito
     if (!req.user.cart) return res.status(400).json({ error: "El usuario no tiene un carrito asignado" });
     if (!reqCart) return res.status(400).json({ error: "Cart ID es requerido en los parámetros" });
-    if (reqCart !== req.user.cart) return res.status(403).json({ error: "Acceso denegado al carrito solicitado" });
+    if (reqCart !== req.user.cart && reqCart !== req.user.cart.toString() ) return res.status(403).json({ error: "Acceso denegado al carrito solicitado" });
     next();
 }
