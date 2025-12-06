@@ -1,4 +1,5 @@
 import TicketService from "../service/ticket.service.js";
+import TicketDto from "../dto/ticket.dto.js";
 
 class TicketController {
     constructor() {
@@ -8,7 +9,7 @@ class TicketController {
     createTicket = async (req, res, next) => {
         try {
             const result = await this.service.createTicket(req.user);
-            res.status(201).send({ message: "Ticket creado exitosamente", ticket: result });
+            res.status(201).send({ message: "Ticket creado exitosamente", ticket: new TicketDto(result) });
         } catch (error) {
             res.status(error.code || 500).send({ message: "Error al crear el ticket", error: error.message });
         }

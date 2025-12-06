@@ -5,3 +5,5 @@ class TicketDto {
     this.total_amount = ticket.total_amount;
   }
 }
+
+export default TicketDto;
