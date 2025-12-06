@@ -50,9 +50,14 @@ class SessionService {
       subject: "Password Recovery",
       html: `<p>
       Este es una URL API para resetear tu contraseña, utilice método POST en la siguiente URL:
-      
+      </p>
+      <p>
       ${resetLink}
+      </p>
+      <p>
       body: 
+      </p>
+      <p>
       {
         "password": "nuevaContraseña"
       }
