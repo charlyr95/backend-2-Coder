@@ -44,7 +44,7 @@ class SessionService {
     const user = await this.repository.getUserByEmail(email);
     if (!user) throw new Error("El correo no está registrado");
     const token = generateToken(user, "15m"); // Token válido por 15 minutos
-    const resetLink = `http://localhost:${config.port}/api/session/reset-password?token=${token}`;
+    const resetLink = `http://localhost:${config.PORT}/api/session/reset-password?token=${token}`;
     const mailOptions = {
       from: '"Ecommerce 2.0" <no-reply@mail.com>',
       to: email,
