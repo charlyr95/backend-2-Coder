@@ -4,9 +4,9 @@
     "title": "Adidas",
     "description": "Adidas Vl Court 3.0",
     "code": "7a120af268",
-    "price": 69990,
+    "price": 19990,
     "status": true,
-    "stock": 194,
+    "stock": 985,
     "category": "calzado",
     "thumbnails": [
       "https://production.cdn.vaypol.com/variants/f49330pv89nbyq7or41iq55btmj0/e82c8d6171dd25bb538f2e7263b5bc7dfc6a79352d85923074be76df53fbc6f4"
@@ -19,7 +19,7 @@
     "code": "746a2d5fb2",
     "price": 41990,
     "status": true,
-    "stock": 20,
+    "stock": 18,
     "category": "calzado",
     "thumbnails": [
       "https://sporting.vtexassets.com/arquivos/ids/1509556-1200-1200?v=638653075694230000&width=1200&height=1200&aspect=true",
@@ -702,62 +702,6 @@
     "category": "calzado",
     "thumbnails": [
       "https://example.com/images/under armour_40.jpg"
-    ]
-  },
-  {
-    "_id": "a1d5ce5c-5966-4479-994a-c2a0e73fd1db",
-    "title": "Puma",
-    "description": "Puma Skyrocket Lite Adp",
-    "code": "746a2d5fb2",
-    "price": 41990,
-    "status": true,
-    "stock": 20,
-    "category": "calzado",
-    "thumbnails": [
-      "https://sporting.vtexassets.com/arquivos/ids/1509556-1200-1200?v=638653075694230000&width=1200&height=1200&aspect=true",
-      "1230558-400-400"
-    ]
-  },
-  {
-    "_id": "1614f976-c95f-41d9-873d-dc5110c4a122",
-    "title": "Puma",
-    "description": "Puma Skyrocket Lite Adp",
-    "code": "746a2d5fb2",
-    "price": 41990,
-    "status": true,
-    "stock": 20,
-    "category": "calzado",
-    "thumbnails": [
-      "https://sporting.vtexassets.com/arquivos/ids/1509556-1200-1200?v=638653075694230000&width=1200&height=1200&aspect=true",
-      "1230558-400-400"
-    ]
-  },
-  {
-    "_id": "dab3006e-dd71-4e08-98ea-81f42503688d",
-    "title": "Puma",
-    "description": "Puma Skyrocket Lite Adp",
-    "code": "746a2d5fb2",
-    "price": 41990,
-    "status": true,
-    "stock": 20,
-    "category": "calzado",
-    "thumbnails": [
-      "https://sporting.vtexassets.com/arquivos/ids/1509556-1200-1200?v=638653075694230000&width=1200&height=1200&aspect=true",
-      "1230558-400-400"
-    ]
-  },
-  {
-    "_id": "5ea554e5-4f02-4cd6-9ad6-b18c045aeb00",
-    "title": "Puma",
-    "description": "Puma Skyrocket Lite Adp",
-    "code": "746a2d5fb2",
-    "price": 41990,
-    "status": true,
-    "stock": 20,
-    "category": "calzado",
-    "thumbnails": [
-      "https://sporting.vtexassets.com/arquivos/ids/1509556-1200-1200?v=638653075694230000&width=1200&height=1200&aspect=true",
-      "1230558-400-400"
     ]
   }
 ]
